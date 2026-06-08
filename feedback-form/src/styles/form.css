@@ -1,0 +1,63 @@
+body{
+    background-color: lavender;
+}
+.container {
+  width: 500px;
+  margin: 30px auto;
+  text-align: center;
+  background-color: rgb(162, 200, 245);
+  box-sizing: border-box;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+h1{
+    font-style: italic;
+}
+h2{
+    text-align: left;
+    color: brown;
+    font-style: italic;
+}
+h3{
+    text-align: left;
+    color: brown;
+    font-style:italic ;
+}
+h4{
+    color: brown;
+    font-style: italic;
+}
+input,
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  background-color: antiquewhite;
+}
+
+textarea {
+  height: 100px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: aqua;
+  color: blue;
+  font-style: italic;
+}
+
+.feedback-list {
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
