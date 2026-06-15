@@ -11,17 +11,24 @@ function Form() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+     ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setArr([...arr, formData]);
+    if (!formData.name.trim() ||!formData.feedback.trim()) return;
+    setArr(prev => [
+     ...prev,
+      {
+       ...formData,
+        name: formData.name.trim(),
+        feedback: formData.feedback.trim(),
+        id: Date.now() 
+      }
+    ]);
 
     setFormData({
       name: "",
@@ -31,10 +38,12 @@ function Form() {
 
   return (
     <div className="container">
-      <h1>Feedback  Collector-Form</h1>
-<h2>Name:</h2>
+      <h1>Feedback Collector Form</h1>
+
       <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
         <input
+          id="name"
           type="text"
           name="name"
           placeholder="Enter your name"
@@ -42,8 +51,10 @@ function Form() {
           onChange={handleChange}
           required
         />
-<h3>Feedback:</h3>
+
+        <label htmlFor="feedback">Feedback:</label>
         <textarea
+          id="feedback"
           name="feedback"
           placeholder="Enter feedback"
           value={formData.feedback}
@@ -53,17 +64,29 @@ function Form() {
 
         <button type="submit">Submit</button>
       </form>
-<h4>Feedback Entries</h4>
+
+      <h4>Feedback Entries</h4>
       <div className="feedback-list">
-        {arr.map((item, index) => (
-          <div className="card" key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.feedback}</p>
-          </div>
-        ))}
+        {arr.length === 0? (
+          <p>No feedback yet.</p>
+        ) : (
+          arr.map((item) => (
+            <div className="card" key={item.id}> 
+              <h3>{item.name}</h3>
+              <p>{item.feedback}</p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
 }
 
-export default Form;
+export default Form;   
+            
+            
+      
+    
+      
+
+  
